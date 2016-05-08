@@ -2,9 +2,7 @@ package com.udacity.spotifystreamer;
 
 import java.io.Serializable;
 
-/**
- * Created by viswan on 4/18/16.
- */
+
 public class MovieDetail implements Serializable{
 
     public String title;

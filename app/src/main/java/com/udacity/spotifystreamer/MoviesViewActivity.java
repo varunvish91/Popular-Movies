@@ -69,9 +69,7 @@ public class MoviesViewActivity extends AppCompatActivity implements ActionBar.O
 
                 String resultString = result.toString();
 
-                // Build our HashMap of movies storing only the ImagePath and the ID, this will
-                // help conserve active memory given that there is a lot of data not being used
-                // while browsing content (only gets used once you click on the image)
+                // Build our List of movies
                 try {
                     JSONObject jsonObject = new JSONObject(resultString);
                     JSONArray movieDetails = jsonObject.getJSONArray(RESULTS);
