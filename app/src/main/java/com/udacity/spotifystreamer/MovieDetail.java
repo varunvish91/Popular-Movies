@@ -1,7 +1,5 @@
 package com.udacity.spotifystreamer;
 
-import android.graphics.Bitmap;
-
 import java.io.Serializable;
 
 /**
