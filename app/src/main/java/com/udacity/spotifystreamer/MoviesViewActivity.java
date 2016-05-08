@@ -45,7 +45,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MoviesViewActivity extends AppCompatActivity implements ActionBar.OnNavigationListener {
-    private static String API_KEY = "df33dbf9a5dbeccbac9e8c0ffd96969d";
+    private static String API_KEY = "Your API Key here";
     private static String IMAGE_BASE_URL = "http://image.tmdb.org/t/p/";
     private static String TAG = "MoviesViewActivity";
 
