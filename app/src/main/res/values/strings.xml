@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Popular Movies</string>
+
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Strings related to Settings -->
+    <string name="preferences">Sort By Populartiy (Default is Highest Rated).</string>
+    <string name="sort">Sort Preference</string>
+
+
+    <!-- Shared Preferences -->
+    <string name="shared_preferences">MyPrefs</string>
+    <string name="key">sort_order</string>
+    <string name="sort_ratings">top_rated</string>
+    <string name="sort_popularity">popular</string>
+    <string name="title_activity_movie_view">MovieViewActivity</string>
+    <string name="popular_movies">Popular Movies</string>
+    <string name="top_rated_movies">Top Rated Movies</string>
+</resources>
