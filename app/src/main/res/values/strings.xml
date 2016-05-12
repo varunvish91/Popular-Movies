@@ -17,4 +17,10 @@
     <string name="title_activity_movie_view">MovieViewActivity</string>
     <string name="popular_movies">Popular Movies</string>
     <string name="top_rated_movies">Top Rated Movies</string>
+
+    <!-- Alert Dialog to be shown -->
+    <string name="alert_title">Connection Error</string>
+    <string name="alert_details">There was an error, please ensure your device is connected to the internet.</string>
+    <string name="alert_confirm">Try Again</string>
+    <string name="alert_cancel">Exit Application</string>
 </resources>
