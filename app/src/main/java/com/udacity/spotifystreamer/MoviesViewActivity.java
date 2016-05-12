@@ -1,5 +1,7 @@
 package com.udacity.spotifystreamer;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -43,9 +45,8 @@ public class MoviesViewActivity extends AppCompatActivity implements ActionBar.O
     private static String RELEASE_DATE = "release_date";
     private static String PLOT = "overview";
 
-    String mCurrentSortMethod;
     SharedPreferences mPrefs;
-
+    String mCurrentSortingMethod;
 
     private ArrayList<MovieDetail> mMovieList;
 
@@ -88,11 +89,19 @@ public class MoviesViewActivity extends AppCompatActivity implements ActionBar.O
                 } catch (JSONException e) {
                     // If there is an exception, log it but do not display anything or count
                     // it towards our total movies displayed
+                    e.printStackTrace();
                 }
 
 
 
             } catch (IOException e) {
+                // Connection failed notify the user via a dialog that they should check their internet
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        notifyConnectionFailed();
+                    }
+                });
                 e.printStackTrace();
             } finally {
                 urlConnection.disconnect();
@@ -140,6 +149,26 @@ public class MoviesViewActivity extends AppCompatActivity implements ActionBar.O
             Log.i(TAG, "url= " + sbb.toString());
             return sbb.toString();
         }
+
+        private void notifyConnectionFailed() {
+            AlertDialog alertDialog = new AlertDialog.Builder(MoviesViewActivity.this).create();
+            alertDialog.setTitle(getString(R.string.alert_title));
+            alertDialog.setMessage(getString(R.string.alert_details));
+            alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.alert_confirm),
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            loadMovies();
+                        }
+                    });
+            alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, getString(R.string.alert_cancel),
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            finish();
+                        }
+                    });
+            alertDialog.show();
+        }
     }
 
     private void changeToolbar(String sort) {
@@ -155,11 +184,10 @@ public class MoviesViewActivity extends AppCompatActivity implements ActionBar.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movies_view);
         mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-
+        mCurrentSortingMethod = mPrefs.getString(getString(R.string.sort), getString(R.string.sort_ratings));
         if (mMovieList == null || mMovieList.isEmpty()) {
             loadMovies();
         }
-
     }
 
     @Override
@@ -200,7 +228,10 @@ public class MoviesViewActivity extends AppCompatActivity implements ActionBar.O
 
     @Override
     protected void onResume() {
-        loadMovies();
+        String sortMethod = mPrefs.getString(getString(R.string.sort), getString(R.string.sort_ratings));
+        if (!mCurrentSortingMethod.equals(sortMethod)) {
+            loadMovies();
+        }
         super.onResume();
     }
 }
