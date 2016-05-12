@@ -4,8 +4,9 @@
     <string name="title_activity_settings">Settings</string>
 
     <!-- Strings related to Settings -->
-    <string name="preferences">Sort By Populartiy (Default is Highest Rated).</string>
+    <string name="preferences">Sort By Popularity (Default is Highest Rated).</string>
     <string name="sort">Sort Preference</string>
+    <string name="settings">Settings</string>
 
 
     <!-- Shared Preferences -->
